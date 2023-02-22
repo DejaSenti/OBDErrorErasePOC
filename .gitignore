@@ -1,0 +1,6 @@
+*
+!*.py
+!*.ui
+!*.gitignore
+
+*.pyc

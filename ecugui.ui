@@ -1,0 +1,640 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.1">
+  <object class="ttk.Notebook" id="main">
+    <property name="height">600</property>
+    <property name="width">500</property>
+    <layout manager="pack">
+      <property name="propagate">True</property>
+      <property name="side">top</property>
+    </layout>
+    <child>
+      <object class="ttk.Notebook.Tab" id="eraser">
+        <property name="text" translatable="yes">Error Eraser</property>
+        <child>
+          <object class="ttk.Frame" id="eraser_frame">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="eraser_file_button">
+                <property name="command" type="command" cbtype="simple">browse_eraser</property>
+                <property name="text" translatable="yes">Click to browse or drop *.bin file here</property>
+                <property name="width">0</property>
+                <layout manager="place">
+                  <property name="anchor">ne</property>
+                  <property name="bordermode">ignore</property>
+                  <property name="relheight">0.21</property>
+                  <property name="relwidth">1.0</property>
+                  <property name="relx">1.0</property>
+                  <property name="rely">0.0</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="eraser_ecu_select_frame">
+                <property name="height">200</property>
+                <property name="relief">sunken</property>
+                <property name="width">200</property>
+                <layout manager="place">
+                  <property name="anchor">center</property>
+                  <property name="relheight">0.1</property>
+                  <property name="relwidth">0.86</property>
+                  <property name="relx">0.5</property>
+                  <property name="rely">0.3</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="eraser_label_brand">
+                    <property name="text" translatable="yes">Brand:</property>
+                    <layout manager="pack">
+                      <property name="padx">5</property>
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Combobox" id="eraser_select_brand">
+                    <property name="state">readonly</property>
+                    <property name="validate">none</property>
+                    <layout manager="pack">
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="eraser_label_ecu">
+                    <property name="text" translatable="yes">Name:</property>
+                    <property name="width">0</property>
+                    <layout manager="pack">
+                      <property name="padx">5</property>
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Combobox" id="eraser_select_ecu">
+                    <property name="state">readonly</property>
+                    <layout manager="pack">
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Text" id="eraser_error_list_text">
+                <property name="height">10</property>
+                <property name="undo">true</property>
+                <property name="width">50</property>
+                <property name="wrap">word</property>
+                <layout manager="place">
+                  <property name="anchor">center</property>
+                  <property name="bordermode">outside</property>
+                  <property name="relheight">0.1</property>
+                  <property name="relwidth">0.83</property>
+                  <property name="relx">0.5</property>
+                  <property name="rely">0.46</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="eraser_error_list_label">
+                <property name="text" translatable="yes">Type in numbers of errors to erase, separated by a comma (e.g. '0016, 0339, etc.):</property>
+                <layout manager="place">
+                  <property name="anchor">center</property>
+                  <property name="relx">0.5</property>
+                  <property name="rely">0.39</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="pygubu.builder.widgets.scrolledframe" id="eraser_maps_scrollbox">
+                <property name="relief">groove</property>
+                <property name="scrolltype">vertical</property>
+                <property name="usemousewheel">true</property>
+                <layout manager="place">
+                  <property name="anchor">center</property>
+                  <property name="relheight">0.25</property>
+                  <property name="relwidth">0.21</property>
+                  <property name="relx">0.19</property>
+                  <property name="rely">0.65</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="eraser_maps_label">
+                    <property name="text" translatable="yes">Maps to modify:</property>
+                    <layout manager="pack">
+                      <property name="pady">5</property>
+                      <property name="propagate">True</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Checkbutton" id="eraser_maps_dtc">
+                    <property name="compound">left</property>
+                    <property name="text" translatable="yes">DTC</property>
+                    <property name="width">10</property>
+                    <layout manager="pack">
+                      <property name="propagate">True</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="eraser_selectall_check">
+                <property name="compound">left</property>
+                <property name="text" translatable="yes">Select All</property>
+                <property name="width">10</property>
+                <layout manager="place">
+                  <property name="anchor">e</property>
+                  <property name="relx">0.27</property>
+                  <property name="rely">0.8</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="eraser_process_button">
+                <property name="command" type="command" cbtype="simple">process</property>
+                <property name="text" translatable="yes">Process and Save!</property>
+                <layout manager="place">
+                  <property name="anchor">s</property>
+                  <property name="relheight">0.12</property>
+                  <property name="relwidth">0.22</property>
+                  <property name="relx">0.5</property>
+                  <property name="rely">0.97</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Notebook.Tab" id="ecu_add">
+        <property name="text" translatable="yes">ECU Adder</property>
+        <child>
+          <object class="ttk.Frame" id="adder_frame">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="adder_file_button">
+                <property name="command" type="command" cbtype="simple">browse_adder</property>
+                <property name="text" translatable="yes">Click to browse or drop *.bin file here</property>
+                <property name="width">0</property>
+                <layout manager="place">
+                  <property name="anchor">ne</property>
+                  <property name="bordermode">ignore</property>
+                  <property name="relheight">0.21</property>
+                  <property name="relwidth">1.0</property>
+                  <property name="relx">1.0</property>
+                  <property name="rely">0.0</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="adder_create_button">
+                <property name="command" type="command" cbtype="simple">create_ecu</property>
+                <property name="text" translatable="yes">Create</property>
+                <layout manager="place">
+                  <property name="anchor">s</property>
+                  <property name="relheight">0.1</property>
+                  <property name="relwidth">0.4</property>
+                  <property name="relx">0.5</property>
+                  <property name="rely">0.96</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="adder_ecu_frame">
+                <property name="height">200</property>
+                <property name="relief">sunken</property>
+                <property name="width">200</property>
+                <layout manager="place">
+                  <property name="anchor">center</property>
+                  <property name="relheight">0.1</property>
+                  <property name="relwidth">0.86</property>
+                  <property name="relx">0.5</property>
+                  <property name="rely">0.3</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="adder_label_brand">
+                    <property name="text" translatable="yes">Brand:</property>
+                    <layout manager="pack">
+                      <property name="padx">5</property>
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Combobox" id="adder_select_brand">
+                    <property name="state">readonly</property>
+                    <property name="validate">none</property>
+                    <layout manager="pack">
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Entry" id="adder_text_brand">
+                    <layout manager="pack">
+                      <property name="padx">3</property>
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="adder_label_ecu">
+                    <property name="text" translatable="yes">Name:</property>
+                    <property name="width">0</property>
+                    <layout manager="pack">
+                      <property name="padx">5</property>
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Entry" id="adder_text_ecu">
+                    <property name="width">10</property>
+                    <layout manager="pack">
+                      <property name="propagate">True</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="pygubu.builder.widgets.scrolledframe" id="adder_maps_scrollbox">
+                <property name="relief">groove</property>
+                <property name="scrolltype">vertical</property>
+                <property name="usemousewheel">false</property>
+                <layout manager="place">
+                  <property name="anchor">center</property>
+                  <property name="relheight">0.38</property>
+                  <property name="relwidth">0.8</property>
+                  <property name="relx">0.45</property>
+                  <property name="rely">0.58</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+                <child>
+                  <object class="ttk.Frame" id="adder_maps_titles_frame">
+                    <property name="height">10</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="anchor">n</property>
+                      <property name="fill">x</property>
+                      <property name="padx">5</property>
+                      <property name="pady">3</property>
+                      <property name="propagate">True</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Label" id="adder_maps_name_label">
+                        <property name="anchor">center</property>
+                        <property name="font">TkDefaultFont</property>
+                        <property name="text" translatable="yes">Map</property>
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">0</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="0" name="minsize">10</property>
+                          <property type="col" id="0" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">30</property>
+                          <property type="row" id="0" name="pad">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="adder_maps_location_label">
+                        <property name="anchor">center</property>
+                        <property name="text" translatable="yes">Location (HEX)</property>
+                        <layout manager="grid">
+                          <property name="column">1</property>
+                          <property name="padx">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="1" name="minsize">10</property>
+                          <property type="col" id="1" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">30</property>
+                          <property type="row" id="0" name="pad">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="adder_maps_value_size_label">
+                        <property name="anchor">center</property>
+                        <property name="text" translatable="yes">Value Size (bits)</property>
+                        <layout manager="grid">
+                          <property name="column">2</property>
+                          <property name="padx">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="2" name="minsize">10</property>
+                          <property type="col" id="2" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">30</property>
+                          <property type="row" id="0" name="pad">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="adder_maps_new_value_label">
+                        <property name="anchor">center</property>
+                        <property name="text" translatable="yes">New Value (HEX)</property>
+                        <layout manager="grid">
+                          <property name="column">3</property>
+                          <property name="padx">1</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="3" name="minsize">10</property>
+                          <property type="col" id="3" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">30</property>
+                          <property type="row" id="0" name="pad">5</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Frame" id="adder_maps_dtc_frame">
+                    <property name="height">10</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="anchor">n</property>
+                      <property name="fill">x</property>
+                      <property name="padx">5</property>
+                      <property name="pady">3</property>
+                      <property name="propagate">True</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Label" id="adder_maps_dtc_label">
+                        <property name="anchor">center</property>
+                        <property name="text" translatable="yes">DTC</property>
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">0</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="0" name="minsize">10</property>
+                          <property type="col" id="0" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="adder_maps_dtc_location_text">
+                        <property name="justify">left</property>
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">1</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="1" name="minsize">10</property>
+                          <property type="col" id="1" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="adder_maps_dtc_value_size_text">
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">2</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="2" name="minsize">10</property>
+                          <property type="col" id="2" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="adder_maps_dtc_new_value_text">
+                        <property name="font">TkDefaultFont</property>
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">3</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="3" name="minsize">10</property>
+                          <property type="col" id="3" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Frame" id="adder_maps_new_frame">
+                    <property name="height">10</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="anchor">n</property>
+                      <property name="fill">x</property>
+                      <property name="padx">5</property>
+                      <property name="pady">1</property>
+                      <property name="propagate">True</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Entry" id="adder_maps_location_text">
+                        <property name="justify">left</property>
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">0</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">4</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="0" name="minsize">10</property>
+                          <property type="col" id="0" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="adder_maps_value_size_text">
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">1</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="1" name="minsize">10</property>
+                          <property type="col" id="1" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="adder_maps_new_value_text">
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">2</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="2" name="minsize">10</property>
+                          <property type="col" id="2" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Button" id="adder_maps_remove_button">
+                        <property name="command" type="command" cbtype="simple">remove_map</property>
+                        <property name="text" translatable="yes">x</property>
+                        <property name="width">2</property>
+                        <layout manager="grid">
+                          <property name="column">4</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Entry" id="adder_maps_text">
+                        <property name="justify">left</property>
+                        <property name="width">10</property>
+                        <layout manager="grid">
+                          <property name="column">3</property>
+                          <property name="ipadx">5</property>
+                          <property name="padx">5</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <property type="col" id="3" name="minsize">10</property>
+                          <property type="col" id="3" name="pad">5</property>
+                          <property type="row" id="0" name="minsize">15</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="adder_maps_add_map_button">
+                <property name="command" type="command" cbtype="simple">add_map</property>
+                <property name="text" translatable="yes">Add Map</property>
+                <layout manager="place">
+                  <property name="anchor">e</property>
+                  <property name="height">50</property>
+                  <property name="relwidth">0.12</property>
+                  <property name="relx">0.99</property>
+                  <property name="rely">0.5</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="adder_maps_clear_button">
+                <property name="command" type="command" cbtype="simple">clear_maps</property>
+                <property name="text" translatable="yes">Clear All</property>
+                <layout manager="place">
+                  <property name="anchor">e</property>
+                  <property name="height">50</property>
+                  <property name="relwidth">0.12</property>
+                  <property name="relx">0.99</property>
+                  <property name="rely">0.64</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="adder_label_map_size">
+                <property name="text" translatable="yes">Map Size (# of values):</property>
+                <layout manager="place">
+                  <property name="anchor">sw</property>
+                  <property name="relx">0.19</property>
+                  <property name="rely">0.81</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Entry" id="adder_text_map_size">
+                <property name="width">10</property>
+                <layout manager="place">
+                  <property name="anchor">sw</property>
+                  <property name="relx">0.44</property>
+                  <property name="rely">0.81</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="adder_flip_bytes_check">
+                <property name="compound">left</property>
+                <property name="text" translatable="yes">Flip bytes</property>
+                <property name="width">10</property>
+                <layout manager="place">
+                  <property name="anchor">sw</property>
+                  <property name="relx">0.62</property>
+                  <property name="rely">0.81</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
